@@ -8,12 +8,12 @@ Beta Island File
 │  * AuxiliaryFiles
 └──* ExportedProject
    ├──Assets
-   │  └──improbable
-   │      └──entityprefabs
-   │          ├──###@island_client.asset
-   │          ├──###@island_client.asset.meta
-   │          ├──###@island_client.prefab
-   │          └──###@island_client.prefab.meta
+   │  ├──improbable
+   │  │   └──entityprefabs
+   │  │       ├──###@island_client.asset
+   │  │       ├──###@island_client.asset.meta
+   │  │       ├──###@island_client.prefab
+   │  │       └──###@island_client.prefab.meta
    │  ├──Mesh
    │  │   ├──(0.0, 0.0, 0.0)_LOD0.asset
    │  │   ├──(0.0, 0.0, 0.0)_LOD0.asset.meta
