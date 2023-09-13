@@ -78,8 +78,6 @@ namespace IsL_Loader.Editor.Windows
             Debug.Log(readerSmallStaticObject.ReadToEnd());
             readerSmallStaticObject.Close();
         } //ReadIslandData
-        
-        
         [MenuItem("IsL_Loader/Launch Island Load", false, 400)]
         static void LoadIslandData()
         {
@@ -88,10 +86,43 @@ namespace IsL_Loader.Editor.Windows
             string pathStaticObjectFile = "Assets/Scripts/IslandLoader/staticobject_buffer.txt";
             string pathSmall_StaticObjectFile = "Assets/Scripts/IslandLoader/smallstaticobject_buffer.txt";
 
+            IsL_LoaderWindow.JsonParser(pathStaticObjectFile, pathSmall_StaticObjectFile);
             Debug.Log("Reset Island Data Buffers");
-            // Reset Content of StaticObject & SmallStaticObject Buffer
+            //Reset Content of StaticObject & SmallStaticObject Buffer
             File.WriteAllText(pathStaticObjectFile, "");
             File.WriteAllText(pathSmall_StaticObjectFile, "");
+        
         } //Load Island
     } //class
+    public class IsL_Loader{
+
+        [System.Serializable]
+            public class StaticObjectStruct
+            {
+                public string name;
+                public Vector3 postion;
+                public Vector3 rotation;
+                public Vector3 scale;
+            }
+        [System.Serializable]
+            public class StaticObjectList 
+            {
+                public List <StaticObjectStruct> staticObject;
+            }
+            
+    public StaticObjectStruct myStaticObjectStruct = new StaticObjectStruct();
+
+    public void JsonParser(string staticObjectPath, string smallStaticObjectPath)
+    {
+        string jsonText = File.ReadAllText(staticObjectPath);
+        JsonUtility.FromJsonOverwrite(jsonText, myStaticObjectStruct);
+        Debug.Log("jsonText : "+jsonText);//works
+        Debug.Log("count : "+myStaticObjectStruct.staticObject.Count);// = 0
+        foreach (StaticObject p in myStaticObjectStruct.staticObject)
+        {
+            Debug.Log("name : "+p.name);
+        }
+    }
+}
+
 } //namespace
